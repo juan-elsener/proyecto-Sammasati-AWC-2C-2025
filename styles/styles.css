@@ -1,0 +1,59 @@
+@import url(/styles/test.css);
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-color: #333;
+
+    background-color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+    border-radius: 10%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.fondo-rojo {
+    background-color: var(--primary-color);
+    margin-left: 50px;
+    border: 5px solid blue;
+    padding: 10px 20px 30px 60px;
+}
+
+.nav-header {
+    background-color: #ffa600;
+    padding: 1rem 0;
+    border: 16;
+}
+
+.nav-bounds {
+    max-width: 1200px;             /* ancho máximo del contenido */
+    margin: 0 auto;                /* centra el bloque dentro del header */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;           /* centra horizontalmente */
+    gap: 1rem;
+}
+
+.nav-logo {
+    max-width: 250px;              /* limita el tamaño del logo */
+    height: auto;                  /* mantiene proporciones */
+    object-fit: contain;
+}
+aside {
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 6px solid #ebebeb;
+  border-radius: 8px;
+  width: 250px;           /* ajustá según tu layout */
+  margin: 1rem;
+}
+aside h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
