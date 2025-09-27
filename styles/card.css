@@ -1,0 +1,138 @@
+.cart-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.cart-container h2 {
+  text-align: center;
+  color: #5D9C59;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 18px;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s ease;
+}
+
+.cart-item:hover {
+  background: #f5f5f5;
+}
+
+.cart-item img {
+  width: 120px;
+  border-radius: 8px;
+}
+
+.cart-info h4 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+}
+
+.cart-info p {
+  margin: 4px 0;
+  font-weight: bold;
+  color: #5D9C59;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #E67E22;
+}
+
+.btn-checkout {
+  display: block;
+  margin: 30px auto 0;
+  padding: 14px 30px;
+  background: #5D9C59;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-checkout:hover {
+  background: #F9A825;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+   
+    .cart-container {
+    max-width: 95%;
+    padding: 25px;
+   }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .cart-item img {
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 10px;
+  }
+
+  .cart-info h4 {
+    font-size: 1.1rem;
+  }
+
+  .cart-info p {
+    font-size: 0.95rem;
+  }
+
+  .cart-total {
+    font-size: 1.2rem;
+  }
+
+  .btn-checkout {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cart-container {
+    max-width: 95%;
+    padding: 30px;
+  }
+
+  .cart-item {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .cart-item img {
+    width: 100px;
+  }
+
+  .cart-info p {
+    font-size: 0.95rem;
+  }
+} 

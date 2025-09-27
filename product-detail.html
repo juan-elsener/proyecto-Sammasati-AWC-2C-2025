@@ -1,76 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="./styles/styles.css">
-         <title>Detalle - Mat de Yoga Aprendiz | Sammasati</title>
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="stylesheet" href="./styles/product-detail.css">
+  <title>Detalle - Mat de Yoga Aprendiz | Sammasati</title>
+</head>
 <body>
-  
+
   <header class="nav-header">
-            <div class="nav-bounds">
-              <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo">
-              <nav class="nav-links">
-                      <a href="./index.html">Inicio</a>
-                      <a href="./checkout.html">Contacto</a>
-                      <a href="./card.html">🛒 Carrito</a>
-                </nav>
-            </div>
-        </header>
+    <div class="nav-bounds">
+      <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo">
+      <nav class="nav-links">
+        <a href="./index.html">Inicio</a>
+        <a href="./checkout.html">Contacto</a>
+        <a href="./card.html">🛒 Carrito</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
-    <aside>
-      <h3>Categorías</h3>
-      <ul class="category-list">
-        <li><a href="./index.html">Todos</a></li>
-        <li><a href="#">Mats</a></li>
-        <li><a href="#">Accesorios</a></li>
-      </ul>
+  <main class="product-layout">
 
-      <h3 id="contacto">Contacto</h3>
-      <form class="contact-form">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+    <section class="product-gallery">
+      <img src="./img/Mat Aprendiz.jpg" alt="Mat de Yoga Aprendiz">
+      <img src="./img/Mat Aprendiz 2.jpg" alt="Vista lateral">
+      <img src="./img/Mat Aprendiz 3.jpg" alt="Detalle textura">
+      <img src="./img/Mat Aprendiz 4.jpg" alt="Uso en práctica">
+      <img src="./img/Mat Aprendiz 5.jpg" alt="Empaque">
+    </section>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
+    <aside class="product-aside">
+      <h2>Mat de Yoga Aprendiz</h2>
+      <p class="price">$95.300</p>
+      <h2>Descripción</h2>
+      <p class="description">
+        La línea aprendiz con sistema de alineación es tu aliada perfecta para acompañar cualquier práctica que realices.
+        Cuenta con un Sistema de Alineación como guía visual pensada para acompañarte en cada postura.
+        Es cómodo, acolchado y liviano. Ya sea que estés buscando mejorar tu flexibilidad, fortalecer tu cuerpo o encontrar la paz interior, con “tu mat para todo,” estarás listx para abrazar cualquier disciplina.
+        Cuenta con una textura naturalmente adherente en seco. Es decir, el agarre disminuye con la sudoración extrema.
+        Recomendado para prácticas suaves e intermedias.
+        Para prácticas intensas recomendamos nuestra línea Superior o línea Corcho.
+        NO INCLUYE CORREA DE TRANSPORTE
+      </p>
+      <div class="actions">
+        <button class="btn-add">Añadir al Carrito</button>
+        <a href="./index.html" class="btn-back">⬅ Volver a la tienda</a>
+      </div>
     </aside>
 
-    <section class="product-detail">
-      <div class="detail-container">
-        <div class="detail-image">
-          <img src="./img/Mat Aprendiz.jpg" alt="Mat de Yoga aprendiz">
-        </div>
-        <div class="detail-info">
-          <h2>Mat de Yoga Aprendiz</h2>
-          <p class="price">$95.300</p>
-          <p>
-            El <strong>Mat de Yoga Aprendiz</strong> está diseñado para quienes inician su práctica. 
-            Fabricado con materiales antideslizantes y de alta resistencia, garantiza estabilidad y comodidad en cada postura. 
-            Ideal para principiantes y uso en casa o estudio.
-          </p>
-          <button>Añadir al carrito</button>
-          <br><br>
-          <a href="./index.html" class="back-link">← Volver a la tienda</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-    <footer>
-              <p>Sammasati Rafaela © 2025</p>
-          <div class="social-icons">
-                     <a href="#"><i class="fab fa-whatsapp"></i></a>
-                     <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-    </footer>
+  <footer>
+    <p>Sammasati Rafaela © 2025</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
 </body>
 </html>

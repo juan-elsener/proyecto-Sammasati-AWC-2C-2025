@@ -4,62 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - Sammasati</title>
-  <link rel="stylesheet" href="./styles/styles.css">
-  <style>
-    .contact-container {
-      max-width: 700px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .contact-container h2 {
-      text-align: center;
-      color: #5D9C59;
-      margin-bottom: 20px;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact-form label {
-      font-weight: bold;
-      color: var(--font-color);
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .btn-submit {
-      background: #5D9C59;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .btn-submit:hover {
-      background: #F9A825;
-    }
-  </style>
+  <link rel="stylesheet" href="./styles/styles.css"> 
+  <link rel="stylesheet" href="./styles/contacto.css"> 
 </head>
 <body>
 
@@ -68,13 +14,12 @@
       <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo Sammasati">
       <nav class="nav-links">
         <a href="./index.html">Inicio</a>
-        <a href="./contacto.html" class="active">Contacto</a>
-        <a href="./carrito.html">Carrito</a>
+        <a href="./checkout.html" class="active">Contacto</a>
+        <a href="./card.html">Carrito</a>
       </nav>
     </div>
   </header>
 
- 
   <main>
     <div class="contact-container">
       <h2>Contáctanos</h2>
@@ -85,11 +30,18 @@
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="tuemail@ejemplo.com" required>
 
-        <label for="message">Comentario</label>
-        <textarea id="message" placeholder="Escribe tu consulta aquí..." required></textarea>
+        <label for="message">Mensaje</label>
+        <textarea id="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
 
         <button type="submit" class="btn-submit">Enviar</button>
       </form>
+
+      <div class="contact-info">
+        <h3>Otras formas de contacto</h3>
+        <p> Dirección: Paraguay 158, Rafaela</p>
+        <p> Email: contacto@sammasati.com</p>
+        <p> Teléfono: +54 9 3492 576091</p>
+      </div>
     </div>
   </main>
 
@@ -101,5 +53,6 @@
       <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
+
 </body>
 </html>

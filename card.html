@@ -5,125 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito - Sammasati</title>
   <link rel="stylesheet" href="./styles/styles.css">
-  <style>
-    .cart-container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .cart-container h2 {
-      text-align: center;
-      color: #5D9C59;
-      margin-bottom: 20px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-
-    th {
-      background: #5D9C59;
-      color: white;
-    }
-
-    .cart-total {
-      text-align: right;
-      margin-top: 20px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #E67E22;
-    }
-
-    .btn-checkout {
-      display: block;
-      margin: 20px auto 0;
-      padding: 12px 20px;
-      background: #5D9C59;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .btn-checkout:hover {
-      background: #F9A825;
-    }
-  </style>
+  <link rel="stylesheet" href="./styles/card.css">  
 </head>
 <body>
+
 <header class="nav-header">
-            <div class="nav-bounds">
-              <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo">
-              <nav class="nav-links">
-                      <a href="./index.html">Inicio</a>
-                      <a href="./checkout.html">Contacto</a>
-                      <a href="./card.html" class="active">🛒 Carrito</a>
-                </nav>
-            </div>
-        </header>
+  <div class="nav-bounds">
+    <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo Sammasati">
+    <nav class="nav-links">
+      <a href="./index.html">Inicio</a>
+      <a href="./checkout.html">Contacto</a>
+      <a href="./card.html" class="active">🛒 Carrito</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- MAIN -->
-  <main>
-    <div class="cart-container">
-      <h2>🛒 Carrito de Compras</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mat de Yoga Aprendiz</td>
-            <td>1</td>
-            <td>$95.300</td>
-            <td>$95.300</td>
-          </tr>
-          <tr>
-            <td>Zafu Sukha</td>
-            <td>2</td>
-            <td>$98.400</td>
-            <td>$196.800</td>
-          </tr>
-          <tr>
-            <td>Bolster Rectangular</td>
-            <td>1</td>
-            <td>$100.600</td>
-            <td>$100.600</td>
-          </tr>
-        </tbody>
-      </table>
+<main>
+  <div class="cart-container">
+    <h2>🛒 Carrito de Compras</h2>
 
-      <p class="cart-total">Total: $392.700</p>
-      <a href="#" class="btn-checkout">Finalizar compra</a>
-    </div>
-  </main>
+    <ul class="cart-list">
+      <li class="cart-item">
+        <img src="./img/Mat Aprendiz.jpg" alt="Mat de Yoga Aprendiz">
+        <div class="cart-info">
+          <h4>Mat de Yoga Aprendiz</h4>
+          <p>Cantidad: 1</p>
+          <p>Precio: $95.300</p>
+          <p>Subtotal: $95.300</p>
+        </div>
+      </li>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>Sammasati Rafaela © 2025</p>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-  </footer>
+      <li class="cart-item">
+        <img src="./img/zafu sukha.jpg" alt="Zafu Sukha">
+        <div class="cart-info">
+          <h4>Zafu Sukha</h4>
+          <p>Cantidad: 2</p>
+          <p>Precio: $98.400</p>
+          <p>Subtotal: $196.800</p>
+        </div>
+      </li>
+
+      <li class="cart-item">
+        <img src="./img/Bolster rectangular.jpg" alt="Bolster Rectangular">
+        <div class="cart-info">
+          <h4>Bolster Rectangular</h4>
+          <p>Cantidad: 1</p>
+          <p>Precio: $100.600</p>
+          <p>Subtotal: $100.600</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="cart-total">Total: $392.700</p>
+    <a href="#" class="btn-checkout">Finalizar compra</a>
+  </div>
+</main>
+
+<footer>
+  <p>Sammasati Rafaela © 2025</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
 </body>
 </html>

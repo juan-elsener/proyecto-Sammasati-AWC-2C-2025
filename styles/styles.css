@@ -1,5 +1,3 @@
-@import url(/styles/test.css);
-
 :root {
     --primary-color: #5D9C59;
     --secondary-color: #F9A825;
@@ -12,19 +10,23 @@
     border-radius: 10%;
 }
 
+html, body {
+  overflow-x: hidden; 
+}
+
 body{
   margin: 0;
   background: var(--bg-light) url('../img/Sammasati Baño Sonoro.jpg') no-repeat center center fixed;
   background-size: cover;
   color: var(--font-color);
-  padding-bottom: 120px;
+  padding-bottom: 0;
 }
 
 nav {
     display: flex;
     gap: 2rem;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-end;
 }
 
 .nav-header {
@@ -139,6 +141,7 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   min-height: calc(100vh - 200px);
+  box-sizing: border-box;
 }
 
 .about-sammasati {
@@ -250,9 +253,9 @@ main {
 
 .product-container {
     flex: 1;
-    min-width: 0;
     padding: 20px;
     border-radius: 8px;
+    width: 100%;
 }
 
 .product-item {
@@ -266,16 +269,15 @@ main {
 
 .product-item img {
     width: 100%;
-    max-width: 200%;
     height: auto;
     border-radius: 6px;
     margin-bottom: 12px;
+    object-fit: cover;
 }
 
 .product-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
-    transition: all 0.3s ease;
 }
 
 .product-item a {
@@ -337,7 +339,7 @@ main {
   font-size: 0.95rem;
   margin: 8px 0;
 }
-.product-container {width: 100%;}
+
 .product-list {
     list-style: none;
     padding: 0;
@@ -350,6 +352,7 @@ main {
     background-color: #ffffff;
     border-radius: 16px;
     margin-top: 10px;
+    padding: 20px;
     font-size: 16px;
     color: var(--font-color);
 }
@@ -360,8 +363,8 @@ footer {
   text-align: center;
   padding: 20px 0;
   width: 100%;
-  position: fixed; 
-  bottom: 0;        
+  position: fixed;
+  bottom: 0;
   left: 0;
   z-index: 100;
 }
@@ -430,4 +433,54 @@ footer p {
     }
  
    
+}
+
+@media (max-width: 480px) {
+  main {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .about-sammasati h2 {
+    font-size: 1.1rem;
+  }
+
+  .about-sammasati p {
+    font-size: 0.9rem;
+  }
+
+  .about-gallery img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shop-intro h2 {
+    font-size: 1.3rem;
+  }
+
+  .product-item h4 {
+    font-size: 1rem;
+  }
+
+  .product-item p {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    position: relative;
+  }
+}
+
+@media (min-width: 1025px) {
+  
+  body {
+    padding-bottom: 120px; 
+  } 
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
 }
