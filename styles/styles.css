@@ -6,7 +6,6 @@
     background-color: #F5F5DC;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    
     border-radius: 10%;
 }
 
@@ -14,26 +13,25 @@ html, body {
   overflow-x: hidden; 
 }
 
-body{
+body {
   margin: 0;
-  background: var(--bg-light) url('../img/Sammasati Baño Sonoro.jpg') no-repeat center center fixed;
   background-size: cover;
   color: var(--font-color);
   padding-bottom: 0;
 }
 
 nav {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .nav-header {
-    background-color: #ffb121;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background-color: #ffb121;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .nav-bounds {
@@ -47,42 +45,42 @@ nav {
 }
 
 .nav-logo {
-    height: 70px;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
+  height: 70px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 .nav-logo:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .nav-links {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .nav-links a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-links a:hover {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 .nav-links a.active {
-    background-color: var(--primary-color);
-    color: white;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .cart {
-    font-size: 20px;
-    cursor: pointer;
-    font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .cart-count {
@@ -130,7 +128,6 @@ nav {
   width: 18px;
   height: 18px;
 }
-
 
 main {
   display: flex;
@@ -250,49 +247,48 @@ main {
   background: var(--secondary-color);
 }
 
-
 .product-container {
-    flex: 1;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
 }
 
 .product-item {
-    border-radius: 10px;
-    background-color: #ffffff;
-    padding: 16px 12px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .product-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 12px;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  object-fit: cover;
 }
 
 .product-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
 .product-item a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .product-item h4 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin: 10px 0 6px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: color 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 10px 0 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: color 0.3s ease;
 }
 
 .product-item p {
@@ -318,19 +314,19 @@ main {
 }
 
 .product-item button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .product-item button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-5px);
+  background-color: var(--secondary-color);
+  transform: translateY(-5px);
 }
 
 .price {
@@ -341,20 +337,21 @@ main {
 }
 
 .product-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
 }
+
 .product-detail {
-    background-color: #ffffff;
-    border-radius: 16px;
-    margin-top: 10px;
-    padding: 20px;
-    font-size: 16px;
-    color: var(--font-color);
+  background-color: #ffffff;
+  border-radius: 16px;
+  margin-top: 10px;
+  padding: 20px;
+  font-size: 16px;
+  color: var(--font-color);
 }
 
 footer {
@@ -363,7 +360,7 @@ footer {
   text-align: center;
   padding: 20px 0;
   width: 100%;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   z-index: 100;
@@ -390,49 +387,40 @@ footer p {
   transform: scale(1.1);
 }
 
-
 @media (max-width: 768px) {
-    main {
-        flex-direction: column; 
-    }
-     .nav-bounds {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-
-    .search-bar {
-        order: 2;
-        width: 100%;
-    }
-
-    .nav-links {
-        order: 3;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .nav-logo {
-        order: 1;
-        align-self: center;
-    }
-
-    .nav-links a {
-        width: 100%;
-        text-align: center;
-    }
-
-    aside {
-        width: 100%;
-        margin-top: 1rem;
-        margin-bottom: 20px;
-    }
-
-    .product-list {
-        grid-template-columns: repeat(1, 1fr); 
-    }
- 
-   
+  main {
+    flex-direction: column; 
+  }
+  .nav-bounds {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .search-bar {
+    order: 2;
+    width: 100%;
+  }
+  .nav-links {
+    order: 3;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-logo {
+    order: 1;
+    align-self: center;
+  }
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+  aside {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 20px;
+  }
+  .product-list {
+    grid-template-columns: repeat(1, 1fr); 
+  }
 }
 
 @media (max-width: 480px) {
@@ -440,43 +428,34 @@ footer p {
     width: 100%;
     box-sizing: border-box;
   }
-  
   .about-sammasati h2 {
     font-size: 1.1rem;
   }
-
   .about-sammasati p {
     font-size: 0.9rem;
   }
-
   .about-gallery img {
     width: 100%;
     max-width: 100%;
   }
-
   .shop-intro h2 {
     font-size: 1.3rem;
   }
-
   .product-item h4 {
     font-size: 1rem;
   }
-
   .product-item p {
     font-size: 0.9rem;
   }
-
   footer {
     position: relative;
   }
 }
 
 @media (min-width: 1025px) {
-  
   body {
     padding-bottom: 120px; 
-  } 
-  
+  }
   footer {
     position: fixed;
     bottom: 0;
@@ -484,3 +463,4 @@ footer p {
     z-index: 100;
   }
 }
+

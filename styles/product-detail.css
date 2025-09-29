@@ -12,8 +12,15 @@
 
 .product-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: 2fr 1fr;
   gap: 15px;
+}
+
+.product-gallery img:first-child {
+  grid-row: span 2;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .product-gallery img {
@@ -21,7 +28,14 @@
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
+
+.product-gallery img:hover {
+  transform: scale(1.05);
+}
+
 
 .product-aside {
   display: flex;
@@ -56,9 +70,11 @@
 }
 
 .btn-add {
+  display: inline-block;
   background: #5D9C59;
   color: white;
   border: none;
+  text-decoration: none;
   padding: 12px 20px;
   border-radius: 8px;
   font-size: 1rem;
