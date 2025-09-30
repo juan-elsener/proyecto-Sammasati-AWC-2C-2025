@@ -43,7 +43,19 @@
   color: #2c3e50;
 }
 
-.cart-info p {
+.cart-info dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+}
+
+.cart-info dt {
+  margin: 0;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.cart-info dd {
   margin: 4px 0;
   font-weight: bold;
   color: #5D9C59;
@@ -101,7 +113,7 @@
     font-size: 1.1rem;
   }
 
-  .cart-info p {
+  .cart-info dd {
     font-size: 0.95rem;
   }
 
@@ -132,7 +144,7 @@
     width: 100px;
   }
 
-  .cart-info p {
+  .cart-info dd {
     font-size: 0.95rem;
   }
 } 

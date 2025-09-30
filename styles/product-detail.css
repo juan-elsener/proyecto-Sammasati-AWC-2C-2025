@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr; 
   gap: 40px;
-  background: var(--card-bg);
+  background: #ffffff;
   padding: 36px;
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
@@ -156,3 +156,17 @@ color: white;
   }
 
 }
+
+@media (max-width: 480px) {
+  .product-aside h1 {
+    font-size: 1.6rem;
+  }
+
+  .product-aside .price {
+    font-size: 1.4rem;
+  }
+
+  .product-aside .description {
+    font-size: 0.95rem;
+  }
+} 

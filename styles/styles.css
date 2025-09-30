@@ -1,5 +1,6 @@
 @import url(./product-detail.css);
 @import url(./card.css);
+@import url(./contact.css);
 @import url(./checkout.css);
 
 :root {
@@ -7,14 +8,18 @@
     --secondary-color: #F9A825;
     --font-color: #333;
     --color-accent: #E67E22;
-    background-color: #F5F5DC;
+    --bg-color: #F5F5DC;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   /* background-color: #F5F5DC;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    border-radius: 10%;
+    border-radius: 10%; */
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -280,7 +285,7 @@ main {
   flex-wrap: wrap;
 }
 
-.filters-options .filters {
+.filters-options .filter {
   color: #ffffff;
   border: none;
   padding: 8px 14px;
@@ -289,7 +294,7 @@ main {
   transition: background 0.3s ease;
 }
 
-.filters-options .filters:hover {
+.filters-options .filter:hover {
   background: var(--primary-color);
   color: white;
   transform: scale(1.05);
@@ -453,7 +458,7 @@ footer p {
   }
 
   .product-list {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important; 
   }
 
   .nav-bounds {
