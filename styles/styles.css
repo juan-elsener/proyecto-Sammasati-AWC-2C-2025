@@ -1,3 +1,7 @@
+@import url(./product-detail.css);
+@import url(./card.css);
+@import url(./checkout.css);
+
 :root {
     --primary-color: #5D9C59;
     --secondary-color: #F9A825;
@@ -9,15 +13,24 @@
     border-radius: 10%;
 }
 
-html, body {
-  overflow-x: hidden; 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  background-size: cover;
+  background-color: var(--bg-color);
   color: var(--font-color);
-  padding-bottom: 0;
+  font-family: var(--font-main);
+  font-weight: 500;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 nav {
@@ -136,6 +149,7 @@ main {
   padding: 24px;
   gap: 28px;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   min-height: calc(100vh - 200px);
   box-sizing: border-box;
@@ -245,6 +259,40 @@ main {
 
 .contact-form button:hover {
   background: var(--secondary-color);
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filters h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.filters-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filters-options .filters {
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.filters-options .filters:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.05);
 }
 
 .product-container {
@@ -389,8 +437,25 @@ footer p {
 
 @media (max-width: 768px) {
   main {
-    flex-direction: column; 
+    flex-direction: column;
+    padding: 16px;
   }
+
+  .about-sammasati,
+  .shop-intro,
+  .product-container {
+    width: 100% !important;
+    padding: 20px 16px;
+  }
+
+  .about-gallery {
+    grid-template-columns: 1fr !important;
+  }
+
+  .product-list {
+    grid-template-columns: 1fr !important;
+  }
+
   .nav-bounds {
     flex-direction: column;
     align-items: stretch;
