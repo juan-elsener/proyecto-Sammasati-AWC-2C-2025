@@ -10,11 +10,7 @@
     --color-accent: #E67E22;
     --bg-color: #F5F5DC;
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   /* background-color: #F5F5DC;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    border-radius: 10%; */
-}
+  }
 
 * {
   box-sizing: border-box;
