@@ -46,6 +46,22 @@ btnAdd.classList.add("primary-button", "add-to-cart-button");
   btnDelete.classList.add("delete-button");
 
  // Eventos CRUD
+
+ btnAdd.addEventListener("click", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(item => item.id === product.id);
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`🧺 ${product.name} agregado al carrito`);
+});
+
+
   btnDelete.addEventListener("click", () => {
     if (confirm(`¿Seguro que querés eliminar "${product.name}"?`)) {
       deleteProductAirtable(product.id);
