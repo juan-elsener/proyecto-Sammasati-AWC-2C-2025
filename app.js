@@ -1,3 +1,5 @@
+import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
+
 console.log("Hola Mundo");
 
 /* EL DOM es una representación en árbol de todos los elementos HTML. 
@@ -104,9 +106,9 @@ function renderProducts(products) {
 // productList.innerHTML = ""; // Elimino todo el contenido dentro del elemento del DOM
 
 // Conexión con Airtable API 
-const airtableToken = "patqJj4jMhUABnCL5.f89194aeb454f709abc4dc3ccc4a462b0e664cca1a94c7fc236d4915ae09749e";
-const baseId = "appNBKqgKHHbxgX2Q";
-const tableName = "Products";
+const airtableToken = AIRTABLE_TOKEN;
+const baseId = BASE_ID;
+const tableName = TABLE_NAME;
 
 const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
