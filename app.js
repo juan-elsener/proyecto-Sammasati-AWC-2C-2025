@@ -13,6 +13,42 @@ const categoryButtons = document.querySelectorAll('.filter');
 // Array para guardar los productos obtenerlos desde Airtable
 let listProducts = [];
 
+// Funciones de Carrito
+
+function getCart() {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+// Función para guardar el carrito
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartBubble();
+}
+
+// Función para actualizar la burbuja del carrito
+function updateCartBubble() {
+  const cart = getCart();
+  const countElement = document.querySelector(".cart-count");
+  if (countElement) {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    countElement.textContent = totalItems;
+  }
+}
+
+// Función para agregar un producto al carrito
+function addToCart(product) {
+  let cart = getCart();
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+  saveCart(cart);
+  alert(`🧘 "${product.name}" fue añadido al carrito.`);
+}
+
+
 // Creo los elementos nuevos
 function createProductElement(product) {
 const li = document.createElement('li');
@@ -37,56 +73,16 @@ const btnAdd = document.createElement('button');
 btnAdd.textContent = "Añadir al carrito";
 btnAdd.classList.add("primary-button", "add-to-cart-button");
 
-  const btnEdit = document.createElement('button');
-  btnEdit.textContent = "Editar";
-  btnEdit.classList.add("edit-button");
-
-  const btnDelete = document.createElement('button');
-  btnDelete.textContent = "Eliminar";
-  btnDelete.classList.add("delete-button");
-
- // Eventos CRUD
-
- btnAdd.addEventListener("click", () => {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const existing = cart.find(item => item.id === product.id);
-
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`🧺 ${product.name} agregado al carrito`);
+btnAdd.addEventListener("click", () => {
+  addToCart(product);
 });
 
-
-  btnDelete.addEventListener("click", () => {
-    if (confirm(`¿Seguro que querés eliminar "${product.name}"?`)) {
-      deleteProductAirtable(product.id);
-    }
-  });
-
-  btnEdit.addEventListener("click", () => {
-    const newName = prompt("Nuevo nombre:", product.name);
-    const newPrice = prompt("Nuevo precio:", product.price);
-    if (newName && newPrice) {
-      updateProductAirtable(product.id, {
-         Name: newName,
-        Price: Number(newPrice),
-        Description: newDesc,
-      });
-    }
-  });
 // Armo la estructura de los elementos
 a.appendChild(img);
 a.appendChild(title);
 a.appendChild(price);
 li.appendChild(a);
 li.appendChild(btnAdd);
-li.appendChild(btnEdit);
-li.appendChild(btnDelete);
 
 return li;
 }
@@ -100,17 +96,16 @@ function renderProducts(products) {
 // Función para filtrar productos por búsqueda y categoría
  function setupFilters() {
   if (inputSearch) {
-    inputSearch.addEventListener('keyup', (event) => {
-      const text = event.target.value.trim().toLowerCase();
-      const filtered = listProducts.filter(p =>
-        p.name.toLowerCase().includes(text)
-      );
+    inputSearch.addEventListener('keyup', e => {
+      const text = e.target.value.trim().toLowerCase();
+      const filtered = listProducts.filter(p => p.name.toLowerCase().includes(text));
       renderProducts(filtered);
     });
   }
-   categoryButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      const category = event.target.innerText.toLowerCase();
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', e => {
+      const category = e.target.innerText.toLowerCase();
       const filtered = listProducts.filter(p =>
         p.category && p.category.toLowerCase() === category
       );
@@ -118,8 +113,7 @@ function renderProducts(products) {
     });
   });
 }
-// productList.remove(); // Elimino el elemento del DOM
-// productList.innerHTML = ""; // Elimino todo el contenido dentro del elemento del DOM
+
 
 // Conexión con Airtable API 
 const airtableToken = AIRTABLE_TOKEN;
@@ -141,7 +135,7 @@ async function getProductsFromAirtable () {
     console.log('products from Airtable', data);
 
     // Mapeo de productos desde Airtable
-     const mappedProducts = data.records.map(item => ({
+      listProducts = data.records.map(item => ({
       id: item.id,
       name: item.fields.Name || "Sin nombre",
       price: item.fields.Price || 0,
@@ -149,191 +143,23 @@ async function getProductsFromAirtable () {
       imageUrl: (item.fields.Img && item.fields.Img[0]?.url) || "./img/default.jpg"
     }));
 
-    listProducts = mappedProducts;
-    console.log(" Productos mapeados:", listProducts);
-
+  
+  
     renderProducts(listProducts);
-
+  
   } catch (error) {
     console.error("Error al obtener productos:", error);
   }
 }
 
- // CREATE - Agregar un producto
-async function createProductAirtable(product) {
-  try {
-    const response = await fetch(airtableUrl, {
-      method: "POST",
-      headers: {
-        'Authorization': `Bearer ${airtableToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fields: {
-          Name: product.name,
-          Price: Number(product.price),
-          Description: product.description,
-          Category: product.category,
-          Img: product.img 
-        }
-      })
-    });
-
-    if (!response.ok) throw new Error(`Error al crear producto: ${response.status}`);
-
-    const newRecord = await response.json();
-    const f = newRecord.fields;
-
-    const newProduct = {
-      id: newRecord.id,
-      name: f.Name,
-      price: f.Price,
-      category: f.Category,
-      imageUrl: f.Img ? f.Img[0].url : "./img/default.jpg",
-    };
-
-    listProducts.push(newProduct);
-    renderProducts(listProducts);
-
-    console.log("Producto creado:", newRecord);
-}
-    catch (error) {
-    console.error("Error al crear producto:", error);
-}
-
-// UPDATE - Editar producto existente
-async function updateProductAirtable(id, updatedFields) {
-  try {
-    const response = await fetch(`${airtableUrl}/${id}`, {
-      method: "PATCH",
-      headers: {
-        'Authorization': `Bearer ${airtableToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fields: updatedFields
-      })
-    });
-    if (!response.ok) throw new Error(`Error al actualizar producto: ${response.status}`);
-    const updatedRecord = await response.json();
-    const f = updatedRecord.fields;
-    console.log("Producto actualizado:", updatedRecord);
-
-    // Actualizo localmente
-    listProducts = listProducts.map(prod =>
-      prod.id === id
-        ? {
-            id,
-            name: f.Name,
-            price: f.Price,
-            description: f.Description,
-            category: f.Category,
-            imageUrl: f.Img?.[0]?.url || prod.imageUrl
-          }
-        : prod
-    );
-    renderProducts(listProducts);
-    console.log("Producto actualizado", updatedRecord);
-
-  } catch (error) {
-    console.error("Error al actualizar producto:", error);
-  }
-}
-
-// DELETE - Eliminar producto
-async function deleteProductAirtable(id) {
-  try {
-    await fetch(`${airtableUrl}/${id}`, {
-      method: "DELETE",
-      headers: {
-        'Authorization': `Bearer ${airtableToken}`
-      }
-    });
-
-    listProducts = listProducts.filter(prod => prod.id !== id);
-    renderProducts(listProducts);
-    console.log(`Producto ${id} eliminado correctamente.`);
-
-  } catch (error) {
-    console.error("Error al eliminar producto:", error);
-  }
-}
-// Inicialización de la app
-function init() {
-function createProductElement(product) {
-  const li = document.createElement("li");
-  li.classList.add("product-item");
-
-  const a = document.createElement("a");
-  a.href = "./product-detail.html";
-
-  const img = document.createElement("img");
-  img.src = product.imageUrl;
-  img.alt = product.name;
-  img.width = 100;
-
-  const title = document.createElement("h4");
-  title.textContent = product.name;
-
-  const price = document.createElement("p");
-  price.textContent = `Precio: $${product.price}`;
-
-  const btnAdd = document.createElement("button");
-  btnAdd.textContent = "Añadir al carrito";
-  btnAdd.classList.add("primary-button");
-
-  const btnEdit = document.createElement("button");
-  btnEdit.textContent = "Editar";
-  btnEdit.classList.add("edit-button");
-
-  const btnDelete = document.createElement("button");
-  btnDelete.textContent = "Eliminar";
-  btnDelete.classList.add("delete-button");
-
-  // EVENTOS DE BOTONES CRUD
-  btnDelete.addEventListener("click", () => {
-    if (confirm(`¿Seguro que querés eliminar "${product.name}"?`)) {
-      deleteProductAirtable(product.id);
-    }
-  });
-
-  btnEdit.addEventListener("click", () => {
-    const newName = prompt("Nuevo nombre:", product.name);
-    const newPrice = prompt("Nuevo precio:", product.price);
-    if (newName && newPrice) {
-      updateProductAirtable(product.id, { Name: newName, Price: Number(newPrice) });
-    }
-  });
-
-  // Armamos el nodo final
-  a.appendChild(img);
-  a.appendChild(title);
-  a.appendChild(price);
-
-  li.appendChild(a);
-  li.appendChild(btnAdd);
-  li.appendChild(btnEdit);
-  li.appendChild(btnDelete);
-
-  return li;
-}
-
-function renderProducts(products) {
-  productList.innerHTML = "";
-  products.forEach(product => {
-    const element = createProductElement(product);
-    productList.appendChild(element);
-  });
-}
-  console.log(" Iniciando carga de productos desde Airtable...");
-  getProductsFromAirtable();    
-} 
-}
-
-function init() {
+// Llamamos a la función al cargar la página
+function initApp() {
   setupFilters();
   getProductsFromAirtable();
+  console.log("Iniciando carga de productos desde Airtable...");
+  updateCartBubble();
+
 }
 
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", initApp);

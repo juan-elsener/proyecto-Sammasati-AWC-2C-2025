@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin | Sammasati</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="stylesheet" href="./styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <header class="nav-header">
+    <div class="nav-bounds">
+      <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo" />
+      <nav class="nav-links">
+        <a href="./index.html">Inicio</a>
+        <a href="./card.html">Carrito</a>
+        <a href="./admin.html" class="active">
+          <i class="fa-solid fa-user-gear"></i> Admin
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="product-list-section">
+      <h2>Lista de productos</h2>
+      <ul id="admin-product-list"></ul>
+    </section>
+
+    <button id="open-add-modal" class="add-product-btn">Agregar producto</button>
+  </main>
+
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-title">Agregar producto</h2>
+      <form id="modal-product-form">
+        <label>Nombre:</label>
+        <input type="text" id="modal-name" required>
+
+        <label>Precio:</label>
+        <input type="number" id="modal-price" required>
+
+        <label>Categoría:</label>
+        <input type="text" id="modal-category">
+
+        <label>Stock:</label>
+        <input type="number" id="modal-stock" required>
+
+        <label>Imagen (URL):</label>
+        <input type="url" id="modal-img">
+
+        <div class="modal-buttons">
+          <button type="submit" class="save-btn">Guardar</button>
+          <button type="button" id="cancel-modal" class="cancel-btn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="delete-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>¿Seguro que querés eliminar este producto?</h3>
+      <div class="modal-buttons">
+        <button id="confirm-delete" class="delete-btn">Eliminar</button>
+        <button id="cancel-delete" class="cancel-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Sammasati Rafaela © 2025</p>
+  </footer>
+
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>

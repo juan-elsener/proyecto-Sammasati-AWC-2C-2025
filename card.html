@@ -7,16 +7,40 @@
     <link rel="stylesheet" href="./styles/styles.css">
   </head>
   <body>
-    <header>
-      <a href="./index.html"></a>⬅ Volver a la tienda</a>
-      <h1>🛒 Tu carrito</h1>
+    <header class = "nav-header">
+      <div class="nav-bounds">
+        <img class="nav-logo" src="./img/Sammasati Logo.png" alt="Logo">
+
+        <nav class="nav-links">
+          <a href="./index.html">Inicio</a>
+          <a href="./contact.html">Contacto</a>
+          <a href="./card.html" class="active cart-link">
+            <span class="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <ul id="cart-list" class="cart-list"></ul>
-      <p id="total" class="cart-total"></p>
-      <button id="clear-cart" class="clear-cart-btn">Vaciar carrito</button>
+    <main class ="cart-container">
+      <h2 class = "cart-title">Tu Carrito de Compras</h2>
+      <ul id="cart-list" class="cart-list" ></ul>
+      <p id="cart-total" class="cart-total">Total: $0</p>
+      <div class="cart-buttons">
+        <button id="clear-cart" class="clear-cart-btn">Vaciar carrito</button>
+        <button id="checkout-btn" class="primary-button">Finalizar compra</button>
+      </div>
     </main>
+
+    <div id="checkout-modal" class="modal">
+  <div class="modal-content">
+    <h3>Confirmar compra</h3>
+    <div id="order-summary"></div>
+    <div class="modal-buttons">
+      <button id="confirm-purchase">Confirmar</button>
+      <button id="cancel-purchase">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 <footer>
   <p>Sammasati Rafaela © 2025</p>
@@ -26,6 +50,6 @@
     <a href="#"><i class="fab fa-instagram"></i></a>
   </div>
 </footer>
-
+  <script src="card.js"></script>
 </body>
 </html>
