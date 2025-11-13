@@ -496,6 +496,27 @@ footer p {
   transform: scale(1.1);
 }
 
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.stock-info {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
 @media (max-width: 768px) {
   main {
     flex-direction: column;

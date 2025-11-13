@@ -36,16 +36,26 @@ function updateCartBubble() {
 }
 
 // Función para agregar un producto al carrito
-function addToCart(product) {
+function addToCart(product, qty = 1) {
   let cart = getCart();
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
-    existing.quantity++;
+    const newQty = existing.qty + qty;
+    if (newQty > product.stock) {
+      alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+      return;
+    }
+
+    existing.quantity = newQty;
   } else {
-    cart.push({ ...product, quantity: 1 });
+    if (qty > product.stock) {
+      alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+      return;
+    }
+    cart.push({ ...product, quantity: qty });
   }
   saveCart(cart);
-  alert(`🧘 "${product.name}" fue añadido al carrito.`);
+  alert(`"${product.name}" fue añadido al carrito. (${qty} unidad${qty > 1 ? "es" : ""}).`);
 }
 
 
@@ -55,11 +65,11 @@ const li = document.createElement('li');
 li.classList.add("product-item");
 
 const a = document.createElement('a');
-a.href = "./product-detail.html";
+a.href = `./product-detail.html?id=${product.id}`;
 
 const img = document.createElement('img');
 img.classList.add("product-image");
-img.src = product.imageUrl || "./Mat Aprendiz.jpg";
+img.src = product.imageUrl || "./img/default.jpg";
 img.alt = product.name || "Producto sin nombre";
 img.width = 100;
 
@@ -69,12 +79,30 @@ title.textContent = product.name || "Producto";
 const price = document.createElement('p');
 price.textContent = product.price ? `Precio: $${product.price}` : "Precio no disponible";
 
+const stockInfo = document.createElement('p');
+stockInfo.textContent = product.stock > 0 ? `Stock: ${product.stock}` : "Sin stock";
+
+const quantityInput = document.createElement('input');
+quantityInput.type = "number";
+quantityInput.classList.add("quantity-input");
+quantityInput.value = 1;
+quantityInput.min = 1;
+quantityInput.max = product.stock;
+if (product.stock < 0) quantityInput.disabled = true;
+
 const btnAdd = document.createElement('button');
-btnAdd.textContent = "Añadir al carrito";
+btnAdd.textContent =
+product.stock > 0 ? "Añadir al carrito" : "Agotado";
 btnAdd.classList.add("primary-button", "add-to-cart-button");
+if (product.stock <= 0) btnAdd.disabled = true;
 
 btnAdd.addEventListener("click", () => {
-  addToCart(product);
+  const qty = parseInt(quantityInput.value) || 1;
+  if (qty > product.stock) {
+    alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+    return;
+  }
+  addToCart(product, qty);
 });
 
 // Armo la estructura de los elementos
@@ -82,7 +110,14 @@ a.appendChild(img);
 a.appendChild(title);
 a.appendChild(price);
 li.appendChild(a);
+li.appendChild(stockInfo);
 li.appendChild(btnAdd);
+
+const actionsDiv = document.createElement('div');
+actionsDiv.classList.add("product-actions");
+actionsDiv.appendChild(quantityInput);
+actionsDiv.appendChild(btnAdd);
+li.appendChild(actionsDiv);
 
 return li;
 }
@@ -96,19 +131,35 @@ function renderProducts(products) {
 // Función para filtrar productos por búsqueda y categoría
  function setupFilters() {
   if (inputSearch) {
-    inputSearch.addEventListener('keyup', e => {
-      const text = e.target.value.trim().toLowerCase();
+    inputSearch.addEventListener('input', (e) => {
+      const text = inputSearch.value.trim().toLowerCase();
       const filtered = listProducts.filter(p => p.name.toLowerCase().includes(text));
       renderProducts(filtered);
     });
   }
 
+
+
   categoryButtons.forEach(button => {
-    button.addEventListener('click', e => {
-      const category = e.target.innerText.toLowerCase();
+    button.addEventListener('click', () => {
+      const selected = button.innerText.trim().toLowerCase();
+      
+      let categoryFilter = "";
+      if (selected === "mats") categoryFilter = "mat";
+      if (selected === "accesorios") categoryFilter = "accesorio";
+      if (selected === "pelotas") categoryFilter = "pelota";
+      if (selected === "ofertas") categoryFilter = "oferta";
+
+      if (!categoryFilter) {
+        renderProducts(listProducts);
+        return;
+      }
+
       const filtered = listProducts.filter(p =>
-        p.category && p.category.toLowerCase() === category
+        p.category &&
+        p.category.toLowerCase().includes(categoryFilter)
       );
+
       renderProducts(filtered);
     });
   });
@@ -140,6 +191,7 @@ async function getProductsFromAirtable () {
       name: item.fields.Name || "Sin nombre",
       price: item.fields.Price || 0,
       category: item.fields.Category || "Sin categoría",
+      stock: item.fields.Stock || 0,
       imageUrl: (item.fields.Img && item.fields.Img[0]?.url) || "./img/default.jpg"
     }));
 

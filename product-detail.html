@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>Detalle - Mat de Yoga Aprendiz | Sammasati</title>
+  <link rel="stylesheet" href="./styles/product-detail.css">
+  <title>Detalle del producto</title>
 </head>
-<script type="module" src="./product-detail.js"></script>
+
 <body>
 
   <header class="nav-header">
@@ -16,49 +16,34 @@
       <nav class="nav-links">
         <a href="./index.html">Inicio</a>
         <a href="./contact.html">Contacto</a>
-        <a href="./card.html">🛒 Carrito</a>
+        <a href="./card.html" class="cart-link">
+          <span class="cart-count">0</span>
+        </a>
       </nav>
     </div>
   </header>
 
   <main class="product-layout">
 
-    <section class="product-gallery">
-      <img src="./img/Mat Aprendiz.jpg" alt="Mat de Yoga Aprendiz">
-      <img src="./img/Mat Aprendiz 2.jpg" alt="Vista lateral">
-      <img src="./img/mat Aprendiz 3.jpg" alt="Detalle textura">
-      <img src="./img/mat Aprendiz 4.jpg" alt="Uso en práctica">
-      <img src="./img/mat Aprendiz 5.jpg" alt="Empaque">
+ 
+    <section class="product-gallery" id="product-gallery">
+    
     </section>
 
     <aside class="product-aside">
-      <h1>Mat de Yoga Aprendiz</h1>
-      <p class="price">$95.300</p>
+
+      <h1 id="product-name">Cargando...</h1>
+
+      <p class="price" id="product-price">$0</p>
 
       <h2>Descripción</h2>
-      
-      <p class="description">
-        La línea Aprendiz con sistema de alineación es tu aliada perfecta para acompañar cualquier práctica que realices. 
-        Cuenta con un <strong>Sistema de Alineación</strong> como guía visual pensada para ayudarte en cada postura.
-      </p>
-
-       <h3>Características</h3>
-
-      <ul class="features">
-        <li>Cómodo, acolchado (6 mm) y liviano</li>
-        <li>Cuenta con una textura naturalmente adherente en seco. Es decir, el agarre disminuye con la sudoración extrema.</li>
-        <li>Recomendado para prácticas suaves e intermedias.</li>
-        <li>El agarre disminuye con sudoración extrema</li>
-        <li>Material: TPE ecológico, libre de látex y PVC</li>
-        <li>No incluye correa de transporte</li>
-      </ul>
+      <p id="product-description">Cargando descripción...</p>
 
       <div class="actions">
-        <form action="./card.html" method="get">
-            <button type="submit" class="btn-add">Añadir al Carrito</button>
-        </form>
-          <a href="./index.html" class="btn-back">⬅ Volver a la tienda</a>
+        <button id="add-to-cart" class="btn-add">Añadir al carrito</button>
+        <a href="./index.html" class="btn-back">⬅ Volver a la tienda</a>
       </div>
+
     </aside>
 
   </main>
@@ -71,6 +56,8 @@
       <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
+
+  <script type="module" src="./product-detail.js"></script>
 
 </body>
 </html>
