@@ -46,17 +46,18 @@ function renderProducts(records) {
     li.classList.add("product-item");
     li.innerHTML = `
       <img src="${(f.Img && f.Img[0]?.url) || './img/default.jpg'}" width="80">
-      <div class="info">
-        <h3>${f.Name || "Sin nombre"}</h3>
-        <p>$${f.Price || 0}</p>
-        <p>Stock: ${f.Stock || 0}</p>
-        <p>${f.Category || "Sin categoría"}</p>
-      </div>
-      <div class="actions">
-        <button class="edit-btn" data-id="${item.id}">Editar</button>
-        <button class="delete-btn" data-id="${item.id}">Eliminar</button>
-      </div>
-    `;
+  <div class="info">
+    <h3>${f.Name || "Sin nombre"}</h3>
+    <p class="p-price">$${f.Price || 0}</p>
+    <p class="p-description">${f.Description || "Sin descripción"}</p>
+    <p class="p-stock">Stock: ${f.Stock || 0}</p>
+    <p class="p-category">${f.Category || "Sin categoría"}</p>
+  </div>
+  <div class="actions">
+    <button class="edit-btn" data-id="${item.id}">Editar</button>
+    <button class="delete-btn" data-id="${item.id}">Eliminar</button>
+  </div>
+`;
     productList.appendChild(li);
   });
 }
@@ -113,6 +114,7 @@ modalForm.addEventListener("submit", e => {
   const fields = {
     Name: document.getElementById("modal-name").value.trim(),
     Price: Number(document.getElementById("modal-price").value) || 0,
+    Description: document.getElementById("modal-description").value.trim(),
     Category: document.getElementById("modal-category").value.trim(),
     Stock: Number(document.getElementById("modal-stock").value) || 0,
     Img: document.getElementById("modal-img").value.trim()
@@ -129,26 +131,30 @@ productList.addEventListener("click", e => {
 
   // Editar
   if (e.target.classList.contains("edit-btn")) {
-    const li = e.target.closest("li");
-    const name = li.querySelector("h3").textContent;
-    const price = li.querySelector("p:nth-child(2)").textContent.replace(/[^\d.]/g, "");
-    const stock = li.querySelector("p:nth-child(3)").textContent.replace(/[^\d.]/g, "");
-    const category = li.querySelector("p:nth-child(4)").textContent;
+  const li = e.target.closest("li");
+  const info = li.querySelector(".info");
 
-    document.getElementById("modal-name").value = name;
-    document.getElementById("modal-price").value = price;
-    document.getElementById("modal-stock").value = stock;
-    document.getElementById("modal-category").value = category;
+  const name        = info.querySelector("h3")?.textContent || "";
+  const price       = info.querySelector(".p-price")?.textContent.replace(/[^\d.]/g, "") || 0;
+  const description = info.querySelector(".p-description")?.textContent || "";
+  const stock       = info.querySelector(".p-stock")?.textContent.replace(/[^\d.]/g, "") || 0;
+  const category    = info.querySelector(".p-category")?.textContent || "";
 
-    editingId = id;
-    openProductModal("Editar producto");
+  document.getElementById("modal-name").value        = name;
+  document.getElementById("modal-price").value       = price;
+  document.getElementById("modal-description").value = description;
+  document.getElementById("modal-stock").value       = stock;
+  document.getElementById("modal-category").value    = category;
+
+  editingId = e.target.dataset.id;
+  openProductModal("Editar producto");
   }
 
-  // Eliminar
-  if (e.target.classList.contains("delete-btn")) {
-    productToDelete = id;
-    showDeleteModal();
-  }
+// Eliminar
+if (e.target.classList.contains("delete-btn")) {
+  productToDelete = id;
+  showDeleteModal();
+}
 });
 
 // ====== MODALES ======

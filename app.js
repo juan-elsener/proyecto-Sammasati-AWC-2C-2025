@@ -40,7 +40,7 @@ function addToCart(product, qty = 1) {
   let cart = getCart();
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
-    const newQty = existing.qty + qty;
+    const newQty = existing.quantity + qty;
     if (newQty > product.stock) {
       alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
       return;
@@ -74,10 +74,14 @@ img.alt = product.name || "Producto sin nombre";
 img.width = 100;
 
 const title = document.createElement('h4');
-title.textContent = product.name || "Producto";
+title.textContent = product.name
 
 const price = document.createElement('p');
-price.textContent = product.price ? `Precio: $${product.price}` : "Precio no disponible";
+price.textContent = `Precio: $${product.price}`;
+
+a.appendChild(img);
+a.appendChild(title);
+a.appendChild(price);
 
 const stockInfo = document.createElement('p');
 stockInfo.textContent = product.stock > 0 ? `Stock: ${product.stock}` : "Sin stock";
@@ -105,19 +109,15 @@ btnAdd.addEventListener("click", () => {
   addToCart(product, qty);
 });
 
-// Armo la estructura de los elementos
-a.appendChild(img);
-a.appendChild(title);
-a.appendChild(price);
-li.appendChild(a);
-li.appendChild(stockInfo);
-li.appendChild(btnAdd);
+ const actionsDiv = document.createElement('div');
+  actionsDiv.classList.add("product-actions");
+  actionsDiv.appendChild(quantityInput);
+  actionsDiv.appendChild(btnAdd);
 
-const actionsDiv = document.createElement('div');
-actionsDiv.classList.add("product-actions");
-actionsDiv.appendChild(quantityInput);
-actionsDiv.appendChild(btnAdd);
-li.appendChild(actionsDiv);
+  li.appendChild(a);
+  li.appendChild(stockInfo);
+  li.appendChild(btnAdd);
+
 
 return li;
 }
