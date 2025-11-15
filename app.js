@@ -13,6 +13,24 @@ const categoryButtons = document.querySelectorAll('.filter');
 // Array para guardar los productos obtenerlos desde Airtable
 let listProducts = [];
 
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  // Trigger animation
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 10);
+
+  // Ocultar después de 3 segundos
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.classList.add("hidden"), 300);
+  }, 3000);
+}
+
 // Funciones de Carrito
 
 function getCart() {
@@ -41,21 +59,32 @@ function addToCart(product, qty = 1) {
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     const newQty = existing.quantity + qty;
+
     if (newQty > product.stock) {
-      alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+      showToast(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+    
       return;
     }
 
     existing.quantity = newQty;
   } else {
     if (qty > product.stock) {
-      alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+      showToast(`No hay suficiente stock. Stock disponible: ${product.stock}`)
       return;
     }
-    cart.push({ ...product, quantity: qty });
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      stock: product.stock,
+      quantity: qty,
+      imageUrl: product.imageUrl 
+     });
+    showToast(`"${product.name}" se añadió al carrito`);
   }
+
   saveCart(cart);
-  alert(`"${product.name}" fue añadido al carrito. (${qty} unidad${qty > 1 ? "es" : ""}).`);
+
 }
 
 
@@ -103,7 +132,7 @@ if (product.stock <= 0) btnAdd.disabled = true;
 btnAdd.addEventListener("click", () => {
   const qty = parseInt(quantityInput.value) || 1;
   if (qty > product.stock) {
-    alert(`No hay suficiente stock. Stock disponible: ${product.stock}`);
+    showToast(`No hay suficiente stock. Stock disponible: ${product.stock}`);
     return;
   }
   addToCart(product, qty);

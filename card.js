@@ -1,6 +1,20 @@
 import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from "./env.js";
 console.log("Carrito cargado correctamente.");
 
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  setTimeout(() => toast.classList.add("show"), 10);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.classList.add("hidden"), 300);
+  }, 3000);
+}
+
 // Helpers
 const qs = (sel) => document.querySelector(sel);
 const qsa = (sel) => Array.from(document.querySelectorAll(sel));
@@ -63,7 +77,11 @@ function renderCart() {
       <div class="cart-item-actions">
         <button class="qty-btn" data-action="decrease" data-id="${item.id}">−</button>
         <span class="qty">${item.quantity}</span>
-        <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+        <button class="qty-btn ${item.quantity >= item.stock ? "disabled" : ""}" 
+        data-action="increase" 
+        data-id="${item.id}"
+        ${item.quantity >= item.stock ? "disabled" : ""}>+
+        </button>
         <button class="remove-btn" data-action="remove" data-id="${item.id}">🗑</button>
       </div>
     `;
@@ -88,16 +106,16 @@ if (cartList) {
     const id = btn.dataset.id;
 
     let cart = getCart();
-    const idx = cart.findIndex(p => p.id === id);
-    if (idx === -1) return;
+    const item = cart.find(p => p.id === id);
+    if (!item) return;
 
     if (action === "increase") {
-      cart[idx].quantity++;
+      item.quantity++;
     } else if (action === "decrease") {
-      cart[idx].quantity--;
-      if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+      item.quantity--;
+      if (item.quantity <= 0) cart = cart.filter(p => p.id !== id);
     } else if (action === "remove") {
-      cart.splice(idx, 1);
+      cart = cart.filter(p => p.id !== id);
     }
 
     setCart(cart);
@@ -110,7 +128,6 @@ if (cartList) {
 // =====================
 if (clearCartBtn) {
   clearCartBtn.addEventListener("click", () => {
-    if (!confirm("¿Deseas vaciar el carrito?")) return;
     localStorage.removeItem("cart");
     renderCart();
   });
@@ -118,7 +135,6 @@ if (clearCartBtn) {
 
 // Construir texto del resumen
 function buildOrderSummaryHTML(cart) {
-  if (!cart.length) return "<p>Carrito vacío</p>";
 
   const items = cart.map(item => {
     const subtotal = item.price * item.quantity;
@@ -137,7 +153,10 @@ function buildOrderSummaryHTML(cart) {
 if (checkoutBtn) {
   checkoutBtn.addEventListener("click", () => {
     const cart = getCart();
-    if (!cart.length) return alert("Tu carrito está vacío.");
+  if (!cart.length) {
+  showToast("Tu carrito está vacío.");
+  return;
+}
 
     orderSummary.innerHTML = buildOrderSummaryHTML(cart);
     modal.style.display = "flex";

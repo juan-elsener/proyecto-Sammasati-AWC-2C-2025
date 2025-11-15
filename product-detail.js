@@ -89,14 +89,14 @@ function addToCart(product) {
   if (existing) {
     if (existing.quantity < (product.stock || Infinity)) {
       existing.quantity++;
-      alert(`Se agregó otra unidad de "${product.name}".`);
+    
     } else {
-      alert(`No hay más stock disponible de "${product.name}".`);
+     
       return;
     }
   } else {
     cart.push({ ...product, quantity: 1 });
-    alert(`"${product.name}" fue añadido al carrito.`);
+    
   }
 
   saveCart(cart);

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito — Sammasati</title>
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/card.css">
   </head>
   <body>
     <header class = "nav-header">
@@ -27,7 +28,7 @@
       <p id="cart-total" class="cart-total">Total: $0</p>
       <div class="cart-buttons">
         <button id="clear-cart" class="clear-cart-btn">Vaciar carrito</button>
-        <button id="checkout-btn" class="primary-button">Finalizar compra</button>
+        <button id="checkout-btn" class="finish-cart-btn">Finalizar compra</button>
       </div>
     </main>
 
@@ -36,8 +37,8 @@
     <h3>Confirmar compra</h3>
     <div id="order-summary"></div>
     <div class="modal-buttons">
-      <button id="confirm-purchase">Confirmar</button>
-      <button id="cancel-purchase">Cancelar</button>
+      <button id="confirm-purchase" class="finish-cart-btn">Confirmar</button>
+      <button id="cancel-purchase" class="clear-cart-btn">Cancelar</button>
     </div>
   </div>
 </div>
