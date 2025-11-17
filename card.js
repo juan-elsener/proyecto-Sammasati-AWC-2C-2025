@@ -193,15 +193,20 @@ if (confirmBtn) {
     orderSummary.innerHTML = "<p>Procesando pedido…</p>";
 
     // actualizar stock uno por uno
-    for (const item of cart) {
-      await updateStockInAirtable(item);
-    }
+    try {
+    const updatePromises = cart.map(item => updateStockInAirtable(item));
+    await Promise.all(updatePromises);
 
     // limpiar carrito
     localStorage.removeItem("cart");
     renderCart();
 
     orderSummary.innerHTML = "<p>¡Gracias por tu compra!</p>";
+
+    } catch (error) {
+    console.error("Error al actualizar stock:", error);
+    orderSummary.innerHTML = "<p>Error al procesar tu pedido. Intenta de nuevo.</p>";
+}
 
     setTimeout(() => {
       modal.style.display = "none";

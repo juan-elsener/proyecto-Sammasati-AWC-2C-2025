@@ -19,7 +19,7 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.remove("hidden");
 
-  // Trigger animation
+  // trigger para reiniciar la animación
   setTimeout(() => {
     toast.classList.add("show");
   }, 10);

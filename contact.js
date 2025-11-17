@@ -9,35 +9,48 @@ const headers = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".contact-form");
+    const form = document.querySelector(".contact-form");
+    const submitButton = form.querySelector(".btn-submit");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+        // Dar feedback de "Cargando"
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = "Enviando...";
+        submitButton.disabled = true; // Evita doble click
 
-    const fields = {
-      Name: name,
-      Email: email,
-      Message: message
-    };
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-    try {
-      const res = await fetch(airtableUrl, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ fields })
-      });
+        const fields = { Name: name, Email: email, Message: message };
 
-      if (!res.ok) throw new Error("Error al enviar mensaje");
+        try {
+            const res = await fetch(airtableUrl, {
+                method: "POST",
+                headers,
+                body: JSON.stringify({ fields })
+            });
 
-      form.reset();
+            if (!res.ok) throw new Error("Error al enviar mensaje");
 
-    } catch (err) {
-      console.error(err);
-     
-    }
-  });
+            
+            form.reset();
+            submitButton.textContent = "¡Enviado con éxito!";
+
+            // Vuelve al estado original después de 2 seg
+            setTimeout(() => {
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            }, 2000);
+
+        } catch (err) {
+            console.error(err);
+
+            // Feedback de ERROR
+            submitButton.textContent = "Error, intenta de nuevo";
+            submitButton.disabled = false; 
+        }
+    });
 });
